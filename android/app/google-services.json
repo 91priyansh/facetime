@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "971348048508",
+    "project_id": "facetime-3a7c7",
+    "storage_bucket": "facetime-3a7c7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:971348048508:android:4d4cefe1e53a727132a7f9",
+        "android_client_info": {
+          "package_name": "com.facetime.face_time.facetime"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "971348048508-u7m004p9fhg158qncfhap4be4rmfaro5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.facetime.face_time.facetime",
+            "certificate_hash": "d285800e047cd1f929ba7f22f7a4e54475f11ec6"
+          }
+        },
+        {
+          "client_id": "971348048508-b16c31jtotg1otk258mev34m5pns1rqu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUL3b5xF53ZVgjSaG-rb0IljMvDOIZH1M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "971348048508-b16c31jtotg1otk258mev34m5pns1rqu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
