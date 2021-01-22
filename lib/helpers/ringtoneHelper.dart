@@ -21,6 +21,8 @@ class RingtonePlayer {
     print("Send port message");
     if (port != null) {
       port.send("stopRingtone");
+    } else {
+      print("Will not send port message");
     }
   }
 }

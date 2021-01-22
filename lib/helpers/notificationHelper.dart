@@ -82,7 +82,6 @@ class NotificationHelper {
           channelDescription:
               'Notification channel for video call notification',
           defaultColor: Color(0xFF9D50DD),
-          enableVibration: true,
           locked: true,
           importance: NotificationImportance.High,
           vibrationPattern: highVibrationPattern,
@@ -106,6 +105,7 @@ class NotificationHelper {
               constants.callNotificationType) {
             RingtonePlayer.playRingtone();
           } else {
+            print(message);
             showLocalNotification(message);
           }
         },
@@ -329,26 +329,28 @@ class NotificationHelper {
   static Future<void> showLocalNotification(var message) async {
     Map<String, String> payload = {};
 
-    if (message['notificationType'] ==
+    if (message['data']['notificationType'] ==
         constants.friendRequestAcceptedNotificationType) {
       payload = {
-        "notificationType": message['notificationType'],
-        "username": message['username'],
-        "userId": message['userId'],
-        "userImageUrl": message['userImageUrl']
+        "notificationType": message['data']['notificationType'],
+        "username": message['data']['username'],
+        "userId": message['data']['userId'],
+        "userImageUrl": message['data']['userImageUrl']
       };
-    } else if (message['notificationType'] ==
+    } else if (message['data']['notificationType'] ==
         constants.friendRequestNotificationType) {
+      print("Friend request notification");
       payload = {
-        "notificationType": message['notificationType'],
+        "notificationType": message['data']['notificationType'],
       };
     }
-
+    print(payload);
     await AwesomeNotifications().createNotification(
       content: NotificationContent(
+        id: 1,
         showWhen: true,
-        title: message['title'],
-        body: message['body'],
+        title: message['notification']['title'],
+        body: message['notification']['body'],
         payload: payload,
         channelKey: constants.notificationChannelKey,
       ),

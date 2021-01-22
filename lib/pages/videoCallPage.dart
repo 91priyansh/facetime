@@ -180,9 +180,10 @@ class _VideoCallPageState extends State<VideoCallPage> {
 
   /// Video view wrapper
   Widget _videoView(view) {
-    return Expanded(child: Container(child: view));
+    return Container(child: view);
   }
 
+  /*
   /// Video view row wrapper
   Widget _expandedVideoRow(List<Widget> views) {
     final wrappedViews = views.map<Widget>(_videoView).toList();
@@ -192,6 +193,7 @@ class _VideoCallPageState extends State<VideoCallPage> {
       ),
     );
   }
+  */
 
   /// Video layout wrapper
   Widget _viewRows() {
@@ -199,45 +201,17 @@ class _VideoCallPageState extends State<VideoCallPage> {
     switch (views.length) {
       case 1:
         return Container(
-            child: Column(
-          children: <Widget>[_videoView(views[0])],
-        ));
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: _videoView(views[0]));
       case 2:
         return Container(
-            child: Stack(
-          children: <Widget>[
-            _showCurrentUserInFullScreenMode
-                ? _expandedVideoRow([views[0]])
-                : _expandedVideoRow([views[1]]),
-
-            //
-            Align(
-              alignment: Alignment.topRight,
-              child: Padding(
-                padding: EdgeInsets.only(top: 40.0, right: 20.0),
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _showCurrentUserInFullScreenMode =
-                          !_showCurrentUserInFullScreenMode;
-                    });
-                  },
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(7.5),
-                    child: Container(
-                      width: 100.0,
-                      height: 150.0,
-                      child: _showCurrentUserInFullScreenMode
-                          ? _videoView(views[1])
-                          : _videoView(views[0]),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            //_expandedVideoRow([views[0]]),
-          ],
-        ));
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: _showCurrentUserInFullScreenMode
+              ? _videoView(views[0])
+              : _videoView(views[1]),
+        );
       /*
       case 3:
         return Container(
@@ -436,6 +410,33 @@ class _VideoCallPageState extends State<VideoCallPage> {
       body: Stack(
         children: <Widget>[
           _viewRows(),
+          _connected
+              ? Align(
+                  alignment: Alignment.topRight,
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 40.0, right: 20.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        print("Change showCurrent");
+                        setState(() {
+                          _showCurrentUserInFullScreenMode =
+                              !_showCurrentUserInFullScreenMode;
+                        });
+                      },
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(7.5),
+                        child: Container(
+                          width: 100.0,
+                          height: 150.0,
+                          child: _showCurrentUserInFullScreenMode
+                              ? _videoView(_getRenderViews()[1])
+                              : _videoView(_getRenderViews()[0]),
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              : Container(),
           //_panel(),
           _showShadowContainer(),
           _toolbar(),
@@ -445,3 +446,6 @@ class _VideoCallPageState extends State<VideoCallPage> {
     );
   }
 }
+
+/*
+ */

@@ -1,12 +1,15 @@
 import 'package:facetime/helpers/userPageHelper.dart';
+import 'package:facetime/helpers/videocallHelper.dart';
 import 'package:facetime/models/callHistory.dart';
 import 'package:facetime/models/userDetails.dart';
 import 'package:facetime/providers/rootProvider.dart';
 import 'package:facetime/services/database/firebaseDatabase.dart';
 import 'package:facetime/utils/errors.dart';
+import 'package:facetime/utils/routes.dart';
 import 'package:facetime/widgets/profilePictureContainer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
 class UserPage extends StatefulWidget {
@@ -133,7 +136,20 @@ class _UserPageState extends State<UserPage> {
         actions: [
           _friendshipStatus == FriendshipStatus.friend
               ? IconButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    await VideoCallHelper.handleCameraAndMicPermission(
+                        Permission.camera);
+                    await VideoCallHelper.handleCameraAndMicPermission(
+                        Permission.microphone);
+                    String channelName =
+                        VideoCallHelper.generateChannelName(32);
+                    Navigator.of(context)
+                        .pushNamed(Routes.videocallPage, arguments: {
+                      "channelName": channelName,
+                      "incomingCall": false,
+                      "userDetails": widget.userDetails
+                    });
+                  },
                   icon: Icon(Icons.call),
                 )
               : Container()

@@ -55,6 +55,8 @@ class _HomePageState extends State<HomePage>
         //to show incomingVideoCallPage
         Navigator.of(context).pushNamed(Routes.incomingVideoCallPage,
             arguments: currentCallDetails);
+      } else {
+        //Stop ringtone
       }
     } else {
       //if data is null means user do not have any current call
