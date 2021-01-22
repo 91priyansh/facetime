@@ -1,7 +1,23 @@
 # facetime
 
-A new Flutter project.
+Flutter videocall application using agora sdk and firestore.
+Plays ringtone when call arrives and also inform user through notification when app is killed or minimized.
 
+#Functionality 
+
+-search user
+
+-send friend request
+
+-handle notification (background and foreground)
+
+-video call with friend 
+
+-call history and friends list
+
+#Bug
+
+-When application is minimized and new call arrives sometimes not stopping the call ringtone after responding to call
 ## Getting Started
 
 This project is a starting point for a Flutter application.
