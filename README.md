@@ -4,7 +4,10 @@ Flutter videocall application using agora sdk and firestore.
 Plays ringtone when call arrives and also inform user through notification when app is killed or minimized. Visit issues section to see preview of app.
 
 #Snapshots
-<img src="images/login.jpg" width="200" height="200">
+
+<img src="images/login.jpg" width="500" height="500">
+
+<img src="images/register.jpg" width="500" height="500">
 
 #Functionality 
 
